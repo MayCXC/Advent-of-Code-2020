@@ -1,7 +1,7 @@
 import scala.io.Source
 
 object Day1 {
-    val input = Source.fromFile("./input/input1.txt").getLines.toArray
+    val input = Source.fromFile("./input/input1.txt").getLines().toArray
 
     input.map(_.toInt)
         .combinations(2)

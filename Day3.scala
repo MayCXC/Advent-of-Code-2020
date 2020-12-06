@@ -1,7 +1,7 @@
 import scala.io.Source
 
 object Day3 {
-    val input = Source.fromFile("./input/input3.txt").getLines.toArray
+    val input = Source.fromFile("./input/input3.txt").getLines().toArray
 
     println( input.zipWithIndex
         .count{ case (line,index) =>

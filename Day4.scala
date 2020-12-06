@@ -1,27 +1,22 @@
 import scala.io.Source
 
 object Day4 {
-    val input = Source.fromFile("./input/input4.txt").getLines.toArray
-
-    println( input
-        .map(l => if (l.equals("")) ";" else l)
-        .mkString
-        .split(";")
-        .count( data => Array("byr:", "iyr:", "eyr:", "hgt:", "hcl:", "ecl:", "pid:")
-            .forall(data.contains)
-        )
-    )
-
-    println( input
-        .map(l => if (l.equals("")) ";" else l)
+    val input = Source.fromFile("./input/input4.txt").getLines().toArray
+    val passports = input
         .mkString(" ")
-        .split("; ")
+        .split("  ")
         .map( _.split(" ")
             .map(_.split(":"))
             .map{case Array(x,y) => (x,y)}
             .toMap
         )
-        .count( pass =>
+
+    println( passports.count( pass => Array("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid")
+            .forall(pass.contains)
+        )
+    )
+
+    println( passports.count( pass =>
             pass.lift("byr").exists(1920 to 2002 contains _.toInt) &&
             pass.lift("iyr").exists(2010 to 2020 contains _.toInt) &&
             pass.lift("eyr").exists(2020 to 2030 contains _.toInt) &&

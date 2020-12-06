@@ -1,7 +1,7 @@
 import scala.io.Source
 
 object Day2 {
-    val input = Source.fromFile("./input/input2.txt").getLines.toArray
+    val input = Source.fromFile("./input/input2.txt").getLines().toArray
 
     println( input
         .count( _.split("(: )|[- ]") match {
