@@ -4,7 +4,7 @@ object Day4 {
     val input = Source.fromFile("./input/input4.txt").getLines().toArray
     val passports = input
         .mkString(" ")
-        .split("  ")
+        .split(" "+" ")
         .map( _.split(" ")
             .map(_.split(":"))
             .map{case Array(x,y) => (x,y)}
