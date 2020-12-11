@@ -7,7 +7,7 @@ object Day11 {
     def adjacent(i: Int, j: Int, x: Int, y: Int): Boolean = verso
         .lift(i+x)
         .flatMap(_.lift(j+y))
-        .contains('#')
+        .contains('#') 
 
     def visible(i: Int, j: Int, x: Int, y: Int): Boolean =
         if(0 <= i && i < verso.length && 0 <= j && j < verso(i).length) {
