@@ -2,7 +2,6 @@ import scala.io.Source
 
 object Day7 {
     val input = Source.fromFile("./input/input7bb.txt").getLines().toArray
-
     val bags = input
         .map( _ match {
             case s"${outside} bags contain ${inside}." => (
@@ -32,7 +31,6 @@ object Day7 {
 
     println(count("shiny gold") - 1)
 */
-
     val invert = bags
         .map{ case (outside, inside) => collection.immutable.HashMap().concat(
             inside.map{ case (name, number) =>
@@ -63,6 +61,5 @@ object Day7 {
             next.diff(memo.keySet).flatMap(invert.lift).flatMap(_.keySet)
         )
 
-    val bottom = bags.filter(_._2.isEmpty).keySet
-    println(fastcount(Map(), bottom)("shiny gold") - 1)
+    println(fastcount(Map(), bags.filter(_._2.isEmpty).keySet)("shiny gold") - 1)
 }

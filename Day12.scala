@@ -13,8 +13,8 @@ object Day12 {
     var wx = 10
     var wy = 1
 
-    for(i <- 0 until input.length)
-        (input(i).head, input(i).tail.toInt) match {
+    for(action <- input)
+        (action.head, action.tail.toInt) match {
             case ('N',n) => dy += n; wy += n
             case ('S',n) => dy -= n; wy -= n
             case ('E',n) => dx += n; wx += n
@@ -33,10 +33,10 @@ object Day12 {
                 for(i <- 0 until math.abs(n)/90) {
                     val nox = -oy*s
                     val noy = +ox*s
-                    val nwx = -wy*s
-                    val nwy = +wx*s
                     ox = nox
                     oy = noy
+                    val nwx = -wy*s
+                    val nwy = +wx*s
                     wx = nwx
                     wy = nwy
                 }
@@ -44,5 +44,6 @@ object Day12 {
         }
     
     println(math.abs(dx) + math.abs(dy))
+
     println(math.abs(px) + math.abs(py))
 }
