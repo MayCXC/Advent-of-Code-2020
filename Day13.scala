@@ -9,7 +9,9 @@ object Day13 {
         case t => t.toInt
     }
 
-    println( times.filterNot(0.equals).map(t  => (t, stamp + (t - stamp % t)))
+    println( times
+        .filterNot(0.equals)
+        .map(t  => (t, stamp + (t - stamp % t)))
         .minBy(_._2) match {
             case (x,y) => x*(y-stamp)
         }
@@ -22,24 +24,23 @@ object Day13 {
         }
     }
 
-    def fdiv(x: BigInt, y: BigInt): BigInt =
-        x / y + math.min(x.signum*y.signum, 0);
+    def fdiv(x: BigInt, y: BigInt): BigInt = x / y + math.min(x.signum*y.signum,0);
 
-    def fmod(x: BigInt, y: BigInt): BigInt =
-        x - fdiv(x,y)*y
+    def fmod(x: BigInt, y: BigInt): BigInt = x - fdiv(x,y)*y
 
-    def crt(l: (BigInt,BigInt), r: (BigInt,BigInt)): (BigInt,BigInt) =
-        eea(l._2, r._2) match {
-            case (x, y, g) => ((l._1*r._2*y + r._1*l._2*x), l._2*r._2) match {
+    def crt: ((BigInt,BigInt), (BigInt,BigInt)) => (BigInt,BigInt) = {
+        case ((lc, lm), (rc, rm)) => eea(lm, rm) match {
+            case (x, y, g) => ((lc*rm*y + rc*lm*x), lm*rm/g) match {
                 case (c, m) => (fmod(c,m), m)
             }
         }
+    }
 
     println( times
         .map(BigInt(_))
         .zipWithIndex
         .filterNot(_._1 == BigInt(0))
-        .map{ case (t,i) => (fmod(t-BigInt(i), t), t) }
+        .map{ case (t,i) => (t - BigInt(i), t) }
         .reduce(crt)._1
     )
 }
