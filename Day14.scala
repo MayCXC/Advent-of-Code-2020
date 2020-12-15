@@ -3,8 +3,8 @@ import scala.math
 
 object Day14 {
     val input = Source.fromFile("./input/input14.txt").getLines().toArray
-    val mem = scala.collection.mutable.Map[Long,Long]()
-    val dec = scala.collection.mutable.Map[Long,Long]()
+    val one = scala.collection.mutable.Map[Long,Long]()
+    val two = scala.collection.mutable.Map[Long,Long]()
     var bitmask = ""
 
     def float: List[Char] => Iterator[List[Char]] = {
@@ -18,7 +18,7 @@ object Day14 {
         case s"mem[${index}] = ${number}" => {
             val i = index.toInt
             val n = number.toLong.toBinaryString
-            mem(i) = java.lang.Long.parseLong(
+            one(i) = java.lang.Long.parseLong(
                 bitmask.zip("0" * (bitmask.length - n.length) + n).map{
                     case ('X', c) => c
                     case (b, c) => b
@@ -36,12 +36,12 @@ object Day14 {
                 .map(_.mkString)
                 .map(java.lang.Long.parseLong(_, 2).toLong)
             ) {
-                dec(j) = number.toLong
+                two(j) = number.toLong
             }
         }
     }
 
-    println(mem.values.sum)
+    println(one.values.sum)
 
-    println(dec.values.sum)
+    println(two.values.sum)
 }
