@@ -9,7 +9,7 @@ object Day16 {
             .map{ case Vector(l, r) => array.slice(l+1, r) }
             .filterNot(_.isEmpty)
 
-    var (ranges,your,nearby) = split(input, "^()|(your ticket:)|(nearby tickets:)$".r.matches).toList match {
+    var (ranges, your, nearby) = split(input, "^()|(your ticket:)|(nearby tickets:)$".r.matches).toList match {
         case List(rules, numbers, other) => (
             rules.map{
                 case s"${_}: ${a}-${b} or ${c}-${d}" => x: Int =>
