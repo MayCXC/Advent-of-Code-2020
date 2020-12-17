@@ -17,6 +17,5 @@ object Main extends App {
     Day15 // 468, 1801753
     Day16 // 22073, 1346570764607
 */
-    Day17
-    
+    Day17 // 291, 1524
 }

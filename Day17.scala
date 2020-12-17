@@ -32,7 +32,7 @@ object Day17 {
         }
     }
 
-    println(pocket.values.count(_ == true))
+    println(pocket.values.count(true.equals))
 
-    println(fourd.values.count(_ == true))
+    println(fourd.values.count(true.equals))
 }
