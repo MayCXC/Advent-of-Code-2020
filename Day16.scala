@@ -3,13 +3,7 @@ import scala.io.Source
 object Day16 {
     val input = Source.fromFile("./input/input16.txt").getLines().toArray
 
-    def split[T](array: Array[T], predicate: T => Boolean): Iterator[Array[T]] =
-        (-1 +: array.indices.filter(i => predicate(array(i))) :+ array.length)
-            .sliding(2)
-            .map{ case Vector(l, r) => array.slice(l+1, r) }
-            .filterNot(_.isEmpty)
-
-    var (ranges, your, nearby) = split(input, "^()|(your ticket:)|(nearby tickets:)$".r.matches).toList match {
+    var (ranges, your, nearby) = Main.split(input, "^()|(your ticket:)|(nearby tickets:)$".r.matches).toList match {
         case List(rules, numbers, other) => (
             rules.map{
                 case s"${_}: ${a}-${b} or ${c}-${d}" => x: Int =>

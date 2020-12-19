@@ -5,19 +5,19 @@ object Day18 {
 
     def evalinfix(precedence: Map[Char,Int]): String => BigInt = {
         def shunting_yard: (List[Char], List[Char]) => List[Char] = {
-            case (Nil, Nil) => Nil
+            case (Nil, Nil)                   => Nil
             case (Nil, top :: stack)          => top :: shunting_yard(Nil, stack)
             case (' ' :: input, stack)        => shunting_yard(input, stack)
-            case (in :: input, stack) if '0' to '9' contains in
+            case (in :: input, stack)         if '0' to '9' contains in
                                               => in :: shunting_yard(input, stack)
             case ('(' :: input, stack)        => shunting_yard(input, '(' :: stack)
             case (')' :: input, '(' :: stack) => shunting_yard(input, stack)
             case (')' :: input, top :: stack) => top :: shunting_yard(')' :: input, stack)
             case (in :: input, Nil)           => shunting_yard(input, in :: Nil)
             case (in :: input, '(' :: stack)  => shunting_yard(input, in :: '(' :: stack)
-            case (in :: input, top :: stack) if precedence(in) <= precedence(top)
+            case (in :: input, top :: stack)  if precedence(in) <= precedence(top)
                                               => top :: shunting_yard(in :: input, stack)
-            case (in :: input, top :: stack) if precedence(in) > precedence(top)
+            case (in :: input, top :: stack)  if precedence(in) > precedence(top)
                                               => shunting_yard(input, in :: top :: stack)
         }
 
@@ -32,5 +32,6 @@ object Day18 {
     } 
 
     println(input.map(evalinfix(Map('+'->0,'*'->0))).sum)
+
     println(input.map(evalinfix(Map('+'->1,'*'->0))).sum)
 }
