@@ -2,7 +2,7 @@ import scala.io.Source
 
 object Day11 {
     val input = Source.fromFile("./input/input11.txt").getLines().toArray
-    var (verso,recto) = (input.map(_.toArray), input.map(_.toArray))
+    var (verso, recto) = (input.map(_.toArray), input.map(_.toArray))
 
     def adjacent(i: Int, j: Int, x: Int, y: Int): Boolean = verso
         .lift(i+x)
@@ -19,7 +19,7 @@ object Day11 {
 
     val (occupied, tolerance) =
         (adjacent(_,_,_,_), 4)
-    //  (visible(_,_,_,_), 5)
+    //  (visible(_,_,_,_), 5) // part two
 
     var mutated = true
     while(mutated) {
@@ -45,14 +45,12 @@ object Day11 {
         verso = recto
         recto = swap
 
-        ///*
         val unstable = verso.zip(recto).indexWhere(t => !(t._1 sameElements t._2))
         if(unstable >= 0) {
             println(unstable)
             println(verso(unstable).mkString)
             println(recto(unstable).mkString)
         }
-        //*/
     }
 
     println(verso.map(_.count('#'.equals)).sum)

@@ -2,7 +2,6 @@ import scala.io.Source
 
 object Day16 {
     val input = Source.fromFile("./input/input16.txt").getLines().toArray
-
     var (ranges, your, nearby) = Main.split(input, "^()|(your ticket:)|(nearby tickets:)$".r.matches).toList match {
         case List(rules, numbers, other) => (
             rules.map{
@@ -13,7 +12,6 @@ object Day16 {
             other.map(_.split(",").map(_.toInt))
         )
     }
-
     val (valid, invalid) = nearby.partition( n => n.forall( i => ranges.exists( r => r(i) ) ) )
 
     println( invalid.map( n => n.filterNot( i => ranges.exists( r => r(i)) ).sum ).sum )

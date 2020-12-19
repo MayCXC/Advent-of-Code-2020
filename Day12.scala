@@ -7,7 +7,6 @@ object Day12 {
     var dy = 0
     var ox = 1
     var oy = 0
-
     var px = 0 // part two position and waypoint
     var py = 0
     var wx = 10

@@ -2,7 +2,6 @@ import scala.io.Source
 
 object Day15 {
     val input = "6,19,0,5,7,13,1"
-
     class Game(var spoken: Map[Int,Int], var age: Int, var turn: Int) extends Iterator[Int] {
         def hasNext = true
         def next() = {
@@ -13,8 +12,8 @@ object Day15 {
             i
         }
     }
-
     val start = input.split(",").map(_.toInt)
+
     for(part <- List(2020, 30000000)) println(
         new Game(
             start.init.zipWithIndex.toMap,
