@@ -16,6 +16,8 @@ object Day19 {
         )
         .mkString("")
 
+    println(evaluate(0))
+
     println(messages.count(evaluate(0).r.matches))
 
     def otherzero(outer: String): Boolean = {

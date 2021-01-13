@@ -4,7 +4,6 @@ object Main extends App {
             .sliding(2)
             .map{ case Vector(l, r) => array.slice(l+1, r) }
             .filterNot(_.isEmpty)
-
 /*
     Day1 // 870331, 283025088
     Day2 // 447, 249
@@ -26,4 +25,5 @@ object Main extends App {
     Day18 // 8298263963837, 145575710203332
     Day19 // 104, 314
 */
+    Day20
 }
