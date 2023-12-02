@@ -1,4 +1,4 @@
-# Advent-of-Code-2020
+# AoC-2020
 Just using Scala, avoiding procedural tedium by using immutable collections as much as possible.
 
 I use `repl.sh` to run `Main.scala` with `sbt` to test solutions as they are edited.
